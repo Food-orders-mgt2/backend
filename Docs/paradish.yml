@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: PARADISH_app
+  version: 1.1.0
+  description: This is the documentation of our app to find all endpoints
+servers:
+  - url: http://localhost:8080
+paths:
+  /User:
+    post: 
+      summary: add an User
+      operationId: addUser
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "201":
+          description: User added successfully
+          content:
+            application/json:
+              schema:
+                $ref: :'#/components/schmas/User'
+        "500":
+          description: Internal sever error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id: 
+          type: string
+        name:
+          type: string
+        first_name: 
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        image: 
+          type: string
+        role: 
+          type: string
+          enum:
+            - "admin"
+            - "customer"
+        residence:
+          type: string
+      example:
+        id: "672a4027-e117-4a6b-a205-7fb13b24d7b4" 
+        name: "Doe"
+        first_name: "John"
+        email: "john.doe@email.com" 
+        password: "hashed_password_1"
+        image: "/images/john.jpg"
+        role: "admin"
+        residence: "City A"
+

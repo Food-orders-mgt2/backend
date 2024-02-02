@@ -13,7 +13,7 @@
         email VARCHAR(250) NOT NULL UNIQUE,
         password VARCHAR(250),
         image TEXT,
-        role VARCHAR(250) CHECK (role = 'user' OR role = 'admin'),
+        role VARCHAR(250) CHECK (role = 'customer' OR role = 'admin'),
         residence VARCHAR(250)
     );
 

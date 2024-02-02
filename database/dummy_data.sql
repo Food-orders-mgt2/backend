@@ -1,10 +1,10 @@
 -- Insertions pour la table "User"
 INSERT INTO "User" (name, first_name,  email, password, image, role, residence) VALUES
-('Doe', 'John', 'john.doe@email.com', 'hashed_password_1', '/images/john.jpg', 'admin',true, 'City A'),
-('Smith', 'Alice', 'alice.smith@email.com', 'hashed_password_2', '/images/alice.jpg','admin', false, 'City B'),
-('Brown', 'Bob', 'bob.brown@email.com', 'hashed_password_3', '/images/bob.jpg','user', false, 'City C'),
-('White', 'Eva', 'eva.white@email.com', 'hashed_password_4', '/images/eva.jpg','user', false, 'City A'),
-('Johnson', 'Charlie', 'charlie.johnson@email.com', 'hashed_password_5', '/images/charlie.jpg','user', false, 'City B');
+('Doe', 'John', 'john.doe@email.com', 'hashed_password_1', '/images/john.jpg', 'admin', 'City A'),
+('Smith', 'Alice', 'alice.smith@email.com', 'hashed_password_2', '/images/alice.jpg','admin', 'City B'),
+('Brown', 'Bob', 'bob.brown@email.com', 'hashed_password_3', '/images/bob.jpg','customer','City C'),
+('White', 'Eva', 'eva.white@email.com', 'hashed_password_4', '/images/eva.jpg','customer',  'City A'),
+('Johnson', 'Charlie', 'charlie.johnson@email.com', 'hashed_password_5', '/images/charlie.jpg','customer', 'City B');
 
 -- Insertions pour la table "Order"
 INSERT INTO "Order" (shipping_cost, delivery_date_time, delivery_place, id_User) VALUES
