@@ -1,0 +1,47 @@
+-- Insertions pour la table "User"
+INSERT INTO "User" (name, first_name, sex, email, password, image, is_admin, residence) VALUES
+('Doe', 'John', 'M', 'john.doe@email.com', 'hashed_password_1', '/images/john.jpg', true, 'City A'),
+('Smith', 'Alice', 'F', 'alice.smith@email.com', 'hashed_password_2', '/images/alice.jpg', false, 'City B'),
+('Brown', 'Bob', 'M', 'bob.brown@email.com', 'hashed_password_3', '/images/bob.jpg', false, 'City C'),
+('White', 'Eva', 'F', 'eva.white@email.com', 'hashed_password_4', '/images/eva.jpg', false, 'City A'),
+('Johnson', 'Charlie', 'M', 'charlie.johnson@email.com', 'hashed_password_5', '/images/charlie.jpg', false, 'City B');
+
+-- Insertions pour la table "Order"
+INSERT INTO "Order" (shipping_cost, delivery_date_time, delivery_place, id_User) VALUES
+(10.50, '2024-02-02 12:00:00', 'Address 1', (SELECT id FROM "User" WHERE name = 'Doe')),
+(8.20, '2024-02-03 14:30:00', 'Address 2', (SELECT id FROM "User" WHERE name = 'Smith')),
+(15.75, '2024-02-04 18:45:00', 'Address 3', (SELECT id FROM "User" WHERE name = 'Brown')),
+(12.00, '2024-02-05 11:15:00', 'Address 4', (SELECT id FROM "User" WHERE name = 'White')),
+(7.80, '2024-02-06 16:00:00', 'Address 5', (SELECT id FROM "User" WHERE name = 'Johnson'));
+
+-- Insertions pour la table "Dish"
+INSERT INTO "Dish" (name, price) VALUES
+('Pasta Carbonara', 12.99),
+('Chicken Alfredo', 15.50),
+('Margherita Pizza', 9.75),
+('Beef Stir-Fry', 14.25),
+('Vegetarian Lasagna', 11.99);
+
+-- Insertions pour la table "Ingredient"
+INSERT INTO "Ingredient" (name) VALUES
+('Spaghetti'),
+('Chicken Breast'),
+('Tomato Sauce'),
+('Beef Strips'),
+('Lasagna Noodles');
+
+-- Insertions pour la table "included"
+INSERT INTO "included" (id_Order, id_Dish) VALUES
+((SELECT id FROM "Order" WHERE shipping_cost = 10.50), (SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara')),
+((SELECT id FROM "Order" WHERE shipping_cost = 8.20), (SELECT id FROM "Dish" WHERE name = 'Chicken Alfredo')),
+((SELECT id FROM "Order" WHERE shipping_cost = 15.75), (SELECT id FROM "Dish" WHERE name = 'Margherita Pizza')),
+((SELECT id FROM "Order" WHERE shipping_cost = 12.00), (SELECT id FROM "Dish" WHERE name = 'Beef Stir-Fry')),
+((SELECT id FROM "Order" WHERE shipping_cost = 7.80), (SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'));
+
+-- Insertions pour la table "contains"
+INSERT INTO "contains" (id_Dish, id_Ingredient) VALUES
+((SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara'), (SELECT id FROM "Ingredient" WHERE name = 'Spaghetti')),
+((SELECT id FROM "Dish" WHERE name = 'Chicken Alfredo'), (SELECT id FROM "Ingredient" WHERE name = 'Chicken Breast')),
+((SELECT id FROM "Dish" WHERE name = 'Margherita Pizza'), (SELECT id FROM "Ingredient" WHERE name = 'Tomato Sauce')),
+((SELECT id FROM "Dish" WHERE name = 'Beef Stir-Fry'), (SELECT id FROM "Ingredient" WHERE name = 'Beef Strips')),
+((SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'), (SELECT id FROM "Ingredient" WHERE name = 'Lasagna Noodles'));
