@@ -18,7 +18,7 @@ class DatabaseConfigurationIT {
             System.out.println("Connection established successfully!");
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
