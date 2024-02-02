@@ -1,4 +1,4 @@
-package com.food_orders.food_orders;
+package com.food_orders.entity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
