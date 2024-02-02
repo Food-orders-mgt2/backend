@@ -10,11 +10,10 @@
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
         first_name VARCHAR(250),
-        sex CHAR(1) CHECK (sex = 'M' OR sex='F'),
         email VARCHAR(250) NOT NULL UNIQUE,
         password VARCHAR(250),
         image TEXT,
-        is_admin BOOL,
+        role VARCHAR(250) CHECK (role = 'user' OR role = 'admin'),
         residence VARCHAR(250)
     );
 
