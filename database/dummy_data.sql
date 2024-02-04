@@ -38,6 +38,7 @@ INSERT INTO "included" (id_Order, id_Dish) VALUES
 ((SELECT id FROM "Order" WHERE shipping_cost = 12.00), (SELECT id FROM "Dish" WHERE name = 'Beef Stir-Fry')),
 ((SELECT id FROM "Order" WHERE shipping_cost = 7.80), (SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'));
 
+
 -- Insertions pour la table "contains"
 INSERT INTO "contains" (id_Dish, id_Ingredient) VALUES
 ((SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara'), (SELECT id FROM "Ingredient" WHERE name = 'Spaghetti')),

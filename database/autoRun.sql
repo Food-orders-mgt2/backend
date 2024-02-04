@@ -1,5 +1,7 @@
     \c postgres
 
+    DROP DATABASE paradish;
+
     CREATE DATABASE paradish;
 
     \c paradish
@@ -18,7 +20,7 @@
     );
 
     CREATE TABLE IF NOT EXISTS "Order" (
-        id UUID DEFAULT uuid_generate_v4 PRIMARY KEY,
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         shipping_cost DOUBLE PRECISION,
         delivery_date_time TIMESTAMP NOT NULL,
