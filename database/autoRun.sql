@@ -31,7 +31,8 @@
     CREATE TABLE IF NOT EXISTS "Dish" (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(250) NOT NULL,
-        price DOUBLE PRECISION NOT NULL
+        price DOUBLE PRECISION NOT NULL,
+        image VARCHAR(250)
     );
 
     CREATE TABLE IF NOT EXISTS "Ingredient" (

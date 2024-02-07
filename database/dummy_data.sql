@@ -15,12 +15,12 @@ INSERT INTO "Order" (shipping_cost, delivery_date_time, delivery_place, id_User)
 (7.80, '2024-02-06 16:00:00', 'Address 5', (SELECT id FROM "User" WHERE name = 'Johnson'));
 
 -- Insertions pour la table "Dish"
-INSERT INTO "Dish" (name, price) VALUES
-('Pasta Carbonara', 12.99),
-('Chicken Alfredo', 15.50),
-('Margherita Pizza', 9.75),
-('Beef Stir-Fry', 14.25),
-('Vegetarian Lasagna', 11.99);
+INSERT INTO "Dish" (name, price,image) VALUES;
+('Pasta Carbonara', 12.99,'dnflkl/ildn.img'),
+('Chicken Alfredo', 15.50,'dnflkl/ildn.img'),
+('Margherita Pizza', 9.75,'dnflkl/ildn.img'),
+('Beef Stir-Fry', 14.25,'dnflkl/ildn.img'),
+('Vegetarian Lasagna', 11.99,'dnflkl/ildn.img');
 
 -- Insertions pour la table "Ingredient"
 INSERT INTO "Ingredient" (name) VALUES

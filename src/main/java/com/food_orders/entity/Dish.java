@@ -13,4 +13,5 @@ public class Dish {
     private UUID id;
     private String name;
     private Double price;
+    private String image;
 }
