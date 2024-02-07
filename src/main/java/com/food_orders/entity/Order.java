@@ -17,4 +17,5 @@ public class Order {
     private Timestamp delivery_date_time;
     private String delivery_place;
     private UUID id_User;
+    private String pay_mode;
 }

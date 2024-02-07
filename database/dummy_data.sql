@@ -8,11 +8,11 @@ INSERT INTO "User" (name, first_name,  email, password, image, role, residence) 
 
 -- Insertions pour la table "Order"
 INSERT INTO "Order" (shipping_cost, delivery_date_time, delivery_place, id_User) VALUES
-(10.50, '2024-02-02 12:00:00', 'Address 1', (SELECT id FROM "User" WHERE name = 'Doe')),
-(8.20, '2024-02-03 14:30:00', 'Address 2', (SELECT id FROM "User" WHERE name = 'Smith')),
-(15.75, '2024-02-04 18:45:00', 'Address 3', (SELECT id FROM "User" WHERE name = 'Brown')),
-(12.00, '2024-02-05 11:15:00', 'Address 4', (SELECT id FROM "User" WHERE name = 'White')),
-(7.80, '2024-02-06 16:00:00', 'Address 5', (SELECT id FROM "User" WHERE name = 'Johnson'));
+(10.50, '2024-02-02 12:00:00', 'Address 1', (SELECT id FROM "User" WHERE name = 'Doe'),'Mobile money'),
+(8.20, '2024-02-03 14:30:00', 'Address 2', (SELECT id FROM "User" WHERE name = 'Smith'),'Mobile money'),
+(15.75, '2024-02-04 18:45:00', 'Address 3', (SELECT id FROM "User" WHERE name = 'Brown'),'Bank'),
+(12.00, '2024-02-05 11:15:00', 'Address 4', (SELECT id FROM "User" WHERE name = 'White'),'Cash'),
+(7.80, '2024-02-06 16:00:00', 'Address 5', (SELECT id FROM "User" WHERE name = 'Johnson'),'Cash');
 
 -- Insertions pour la table "Dish"
 INSERT INTO "Dish" (name, price,image) VALUES;

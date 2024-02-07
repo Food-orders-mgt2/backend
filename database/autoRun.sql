@@ -25,7 +25,8 @@
         shipping_cost DOUBLE PRECISION,
         delivery_date_time TIMESTAMP NOT NULL,
         delivery_place VARCHAR(250) NOT NULL,
-        id_User UUID REFERENCES "User"(id)
+        id_User UUID REFERENCES "User"(id),
+        pay_mode VARCHAR(250) CHECK (pay_mode= 'Mobile money' OR pay_mode = 'Bank' OR pay_mode = 'Cash')
     );
 
     CREATE TABLE IF NOT EXISTS "Dish" (
