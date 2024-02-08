@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface GenericDAO<T> {
-    User insert(T toAdd) throws SQLException;
+    T insert(T toAdd) throws SQLException;
 
     List<T> findAll() throws SQLException;
 

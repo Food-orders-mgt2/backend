@@ -12,9 +12,10 @@ import java.util.UUID;
 @ToString
 public class Order {
     private UUID id;
-    private Timestamp date_time;
-    private Double shipping_cost;
-    private Timestamp delivery_date_time;
-    private String delivery_place;
-    private String pay_mode;
+    private Timestamp Date_time;
+    private Double Shipping_cost;
+    private Timestamp Delivery_date_time;
+    private String Delivery_place;
+    private UUID Id_User;
+    private String Pay_mode;
 }

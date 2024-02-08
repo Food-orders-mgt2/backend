@@ -19,15 +19,15 @@
         residence VARCHAR(250)
     );
 
-    CREATE TABLE IF NOT EXISTS "Order" (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        shipping_cost DOUBLE PRECISION,
-        delivery_date_time TIMESTAMP NOT NULL,
-        delivery_place VARCHAR(250) NOT NULL,
-        id_User UUID REFERENCES "User"(id),
-        pay_mode VARCHAR(250) CHECK (pay_mode= 'Mobile money' OR pay_mode = 'Bank' OR pay_mode = 'Cash')
-    );
+      CREATE TABLE IF NOT EXISTS "Order" (
+          id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+          date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          shipping_cost DOUBLE PRECISION,
+          delivery_date_time TIMESTAMP NOT NULL,
+          delivery_place VARCHAR(250) NOT NULL,
+          id_User UUID REFERENCES "User"(id),
+          pay_mode VARCHAR(250) CHECK (pay_mode= 'Mobile money' OR pay_mode = 'Bank' OR pay_mode = 'Cash')
+      );
 
     CREATE TABLE IF NOT EXISTS "Dish" (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
