@@ -11,17 +11,24 @@ import java.sql.SQLException;
 @Configuration
 public class DatabaseConfiguration {
 
-    @Value("${spring.datasource.url}")
-    private String url;
+    @Value("${DB_HOST}")
+    private String host;
 
-    @Value("${spring.datasource.username}")
+    @Value("${DB_PORT}")
+    private String port;
+
+    @Value("${DB_NAME}")
+    private String dbName;
+
+    @Value("${DB_USERNAME}")
     private String username;
 
-    @Value("${spring.datasource.password}")
+    @Value("${DB_PASSWORD}")
     private String password;
 
     @Bean
     public Connection getConnection() throws SQLException {
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + dbName;
         return DriverManager.getConnection(url, username, password);
     }
 }
