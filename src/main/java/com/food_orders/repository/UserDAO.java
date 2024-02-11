@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Component
 public class UserDAO implements GenericDAO<User> {
-    private Connection connection;
+    private final Connection connection;
 
     public UserDAO(Connection connection) {
         this.connection = connection;
@@ -22,7 +22,7 @@ public class UserDAO implements GenericDAO<User> {
                 "(name, first_name, email, password, image, role, residence)" +
                 " VALUES (?,?,?,?,?,?,?)";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, toAdd.getName());
             preparedStatement.setString(2, toAdd.getFirst_name());
             preparedStatement.setString(3, toAdd.getEmail());
@@ -55,7 +55,7 @@ public class UserDAO implements GenericDAO<User> {
 
 
     @Override
-    public List<User> findAll() throws SQLException {
+    public List<User> findAll() {
         String sql = "SELECT * FROM \"User\"";
 
         List<User> allUsers = new ArrayList<>();
@@ -65,7 +65,7 @@ public class UserDAO implements GenericDAO<User> {
 
             while (result.next()) {
                 allUsers.add(new User(
-                        (UUID) result.getObject("id", UUID.class),
+                        result.getObject("id", UUID.class),
                         result.getString("name"),
                         result.getString("first_name"),
                         result.getString("email"),
@@ -91,7 +91,7 @@ public class UserDAO implements GenericDAO<User> {
             try (ResultSet result = preparedStatement.executeQuery()) {
                 if (result.next()) {
                     return new User(
-                            (UUID) result.getObject("id", UUID.class),
+                            result.getObject("id", UUID.class),
                             result.getString("name"),
                             result.getString("first_name"),
                             result.getString("email"),
