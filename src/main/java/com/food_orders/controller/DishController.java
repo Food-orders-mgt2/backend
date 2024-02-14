@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/dish")
 public class DishController {
