@@ -55,7 +55,6 @@ public class DishController {
     @PutMapping("/{dishId}")
     public ResponseEntity<Dish> updateDish(@PathVariable UUID dishId, @RequestBody Dish updatedDish) {
         try {
-            updatedDish.setId(dishId);
             dishDAO.update(updatedDish);
             return ResponseEntity.ok(updatedDish);
         } catch (SQLException e) {
