@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.food_orders.FoodOrdersApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.17 s -- in com.food_orders.FoodOrdersApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.784 s -- in com.food_orders.FoodOrdersApplicationTests
