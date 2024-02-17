@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
-@CrossOrigin(origins = {"http://localhost:5173", "https://main--para-dish.netlify.app","https://para-dish.netlify.app"})
+@CrossOrigin(origins = {"http://localhost:5173", "https://main--para-dish.netlify.app", "https://para-dish.netlify.app"})
 @RestController
 @RequestMapping("/dish")
 public class DishController {
