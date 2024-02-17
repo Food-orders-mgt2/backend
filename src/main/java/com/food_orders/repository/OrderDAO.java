@@ -18,16 +18,18 @@ public class OrderDAO implements GenericDAO<Order> {
 
     @Override
     public Order insert(Order toAdd) throws SQLException {
-        String sql = "INSERT INTO \"Order\" (id, date_time, shipping_cost, delivery_date_time, delivery_place, id_User, pay_mode) " +
-                "VALUES (uuid_generate_v4(), ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO \"Order\" (id, date_time, shipping_cost, delivery_date_time, delivery_address, list_dish_id, id_User, pay_mode,total_price) " +
+                "VALUES (uuid_generate_v4(), ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setTimestamp(1, toAdd.getDate_time());
             preparedStatement.setDouble(2, toAdd.getShipping_cost());
             preparedStatement.setTimestamp(3, toAdd.getDelivery_date_time());
-            preparedStatement.setString(4, toAdd.getDelivery_place());
-            preparedStatement.setObject(5, toAdd.getId_User());
-            preparedStatement.setString(6, toAdd.getPay_mode());
+            preparedStatement.setString(4, toAdd.getDelivery_address());
+            preparedStatement.setString(5,toAdd.getList_dish_id());
+            preparedStatement.setObject(6, toAdd.getId_User());
+            preparedStatement.setString(7, toAdd.getPay_mode());
+            preparedStatement.setDouble(8,toAdd.getTotal_price());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -62,9 +64,11 @@ public class OrderDAO implements GenericDAO<Order> {
                         resultSet.getTimestamp("date_time"),
                         resultSet.getDouble("shipping_cost"),
                         resultSet.getTimestamp("delivery_date_time"),
-                        resultSet.getString("delivery_place"),
+                        resultSet.getString("delivery_address"),
+                        resultSet.getString("list_dish_id"),
                         resultSet.getObject("id_User", UUID.class),
-                        resultSet.getString("pay_mode"));
+                        resultSet.getString("pay_mode"),
+                        resultSet.getDouble("total_price"));
                 orders.add(order);
             }
         } catch (Exception e) {
@@ -87,9 +91,11 @@ public class OrderDAO implements GenericDAO<Order> {
                             resultSet.getTimestamp("date_time"),
                             resultSet.getDouble("shipping_cost"),
                             resultSet.getTimestamp("delivery_date_time"),
-                            resultSet.getString("delivery_place"),
+                            resultSet.getString("delivery_address"),
+                            resultSet.getString("list_dish_id"),
                             resultSet.getObject("id_User", UUID.class),
-                            resultSet.getString("pay_mode"));
+                            resultSet.getString("pay_mode"),
+                            resultSet.getDouble("total_price"));
                 }
             }
         }
@@ -100,16 +106,18 @@ public class OrderDAO implements GenericDAO<Order> {
     @Override
     public void update(Order updatedOrder) throws SQLException {
         String sql = "UPDATE \"Order\" SET date_time = ?, shipping_cost = ?, delivery_date_time = ?, " +
-                "delivery_place = ?, id_User = ?, pay_mode = ? WHERE id = ?";
+                "delivery_address = ?,list_dish_id = ?, id_User = ?, pay_mode = ?, total_price = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setTimestamp(1, updatedOrder.getDate_time());
             preparedStatement.setDouble(2, updatedOrder.getShipping_cost());
             preparedStatement.setTimestamp(3, updatedOrder.getDelivery_date_time());
-            preparedStatement.setString(4, updatedOrder.getDelivery_place());
-            preparedStatement.setObject(5, updatedOrder.getId_User());
-            preparedStatement.setString(6, updatedOrder.getPay_mode());
-            preparedStatement.setObject(7, updatedOrder.getId());
+            preparedStatement.setString(4, updatedOrder.getDelivery_address());
+            preparedStatement.setString(5, updatedOrder.getList_dish_id());
+            preparedStatement.setObject(6,updatedOrder.getId_User());
+            preparedStatement.setString(7, updatedOrder.getPay_mode());
+            preparedStatement.setDouble(8,updatedOrder.getTotal_price());
+            preparedStatement.setObject(9, updatedOrder.getId());
 
             preparedStatement.executeUpdate();
         }

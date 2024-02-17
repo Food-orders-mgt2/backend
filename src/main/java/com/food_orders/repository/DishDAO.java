@@ -18,13 +18,14 @@ public class DishDAO implements GenericDAO<Dish> {
 
     @Override
     public Dish insert(Dish toAdd) throws SQLException {
-        String sql = "INSERT INTO \"Dish\" (id, name, price, image) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO \"Dish\" (id, name, description, price, image) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setObject(1, toAdd.getId());
             preparedStatement.setString(2, toAdd.getName());
-            preparedStatement.setDouble(3, toAdd.getPrice());
-            preparedStatement.setString(4, toAdd.getImage());
+            preparedStatement.setString(3, toAdd.getDescription());
+            preparedStatement.setDouble(4, toAdd.getPrice());
+            preparedStatement.setString(5, toAdd.getImage());
 
             preparedStatement.executeUpdate();
         }
@@ -43,6 +44,7 @@ public class DishDAO implements GenericDAO<Dish> {
                 Dish dish = new Dish(
                         resultSet.getObject("id", UUID.class),
                         resultSet.getString("name"),
+                        resultSet.getString("description"),
                         resultSet.getDouble("price"),
                         resultSet.getString("image"));
                 dishes.add(dish);
@@ -63,6 +65,7 @@ public class DishDAO implements GenericDAO<Dish> {
                     return new Dish(
                             resultSet.getObject("id", UUID.class),
                             resultSet.getString("name"),
+                            resultSet.getString("description"),
                             resultSet.getDouble("price"),
                             resultSet.getString("image"));
                 }
@@ -74,13 +77,14 @@ public class DishDAO implements GenericDAO<Dish> {
 
     @Override
     public void update(Dish updatedDish) throws SQLException {
-        String sql = "UPDATE \"Dish\" SET name = ?, price = ?, image = ? WHERE id = ?";
+        String sql = "UPDATE \"Dish\" SET name = ?, description = ?, price = ?, image = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, updatedDish.getName());
-            preparedStatement.setDouble(2, updatedDish.getPrice());
-            preparedStatement.setString(3, updatedDish.getImage());
-            preparedStatement.setObject(4, updatedDish.getId());
+            preparedStatement.setString(2,updatedDish.getDescription());
+            preparedStatement.setDouble(3, updatedDish.getPrice());
+            preparedStatement.setString(4, updatedDish.getImage());
+            preparedStatement.setObject(5, updatedDish.getId());
 
             preparedStatement.executeUpdate();
         }

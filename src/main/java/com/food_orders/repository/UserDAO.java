@@ -19,17 +19,13 @@ public class UserDAO implements GenericDAO<User> {
     @Override
     public User insert(User toAdd) throws SQLException {
         String sql = "INSERT INTO \"User\" " +
-                "(name, first_name, email, password, image, role, residence)" +
-                " VALUES (?,?,?,?,?,?,?)";
+                "(username, email, password)" +
+                " VALUES (?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, toAdd.getName());
-            preparedStatement.setString(2, toAdd.getFirst_name());
-            preparedStatement.setString(3, toAdd.getEmail());
-            preparedStatement.setString(4, toAdd.getPassword());
-            preparedStatement.setString(5, toAdd.getImage());
-            preparedStatement.setString(6, toAdd.getRole());
-            preparedStatement.setString(7, toAdd.getResidence());
+            preparedStatement.setString(1,toAdd.getUsername());
+            preparedStatement.setString(2, toAdd.getEmail());
+            preparedStatement.setString(3, toAdd.getPassword());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -47,7 +43,7 @@ public class UserDAO implements GenericDAO<User> {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            throw e; // Rethrow the exception to indicate failure
+            throw e;
         }
 
         return toAdd;
@@ -66,13 +62,10 @@ public class UserDAO implements GenericDAO<User> {
             while (result.next()) {
                 allUsers.add(new User(
                         result.getObject("id", UUID.class),
-                        result.getString("name"),
-                        result.getString("first_name"),
+                        result.getString("username"),
                         result.getString("email"),
-                        result.getString("password"),
-                        result.getString("image"),
-                        result.getString("role"),
-                        result.getString("residence")));
+                        result.getString("password")
+                        ));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -92,13 +85,10 @@ public class UserDAO implements GenericDAO<User> {
                 if (result.next()) {
                     return new User(
                             result.getObject("id", UUID.class),
-                            result.getString("name"),
-                            result.getString("first_name"),
+                            result.getString("username"),
                             result.getString("email"),
-                            result.getString("password"),
-                            result.getString("image"),
-                            result.getString("role"),
-                            result.getString("residence"));
+                            result.getString("password")
+                    );
                 }
                 return null;
             }
@@ -107,17 +97,13 @@ public class UserDAO implements GenericDAO<User> {
 
     @Override
     public void update(User updatedUser) throws SQLException {
-        String sql = "UPDATE \"User\" SET name = ?, first_name = ?, email = ?, password = ?, image = ?, role = ?, residence = ? WHERE id = ?";
+        String sql = "UPDATE \"User\" SET username = ?, email = ?, password = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, updatedUser.getName());
-            preparedStatement.setString(2, updatedUser.getFirst_name());
-            preparedStatement.setString(3, updatedUser.getEmail());
-            preparedStatement.setString(4, updatedUser.getPassword());
-            preparedStatement.setString(5, updatedUser.getImage());
-            preparedStatement.setString(6, updatedUser.getRole());
-            preparedStatement.setString(7, updatedUser.getResidence());
-            preparedStatement.setObject(8, updatedUser.getId());
+            preparedStatement.setString(1,updatedUser.getUsername());
+            preparedStatement.setString(2, updatedUser.getEmail());
+            preparedStatement.setString(3, updatedUser.getPassword());
+            preparedStatement.setObject(4, updatedUser.getId());
 
             preparedStatement.executeUpdate();
         }
