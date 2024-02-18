@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.UUID;
 
+@CrossOrigin(origins = {"http://localhost:5173", "https://main--para-dish.netlify.app", "https://para-dish.netlify.app"})
 @RestController
 @RequestMapping("/order")
 public class OrderController {

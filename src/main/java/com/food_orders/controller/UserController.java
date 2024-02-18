@@ -17,6 +17,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@CrossOrigin(origins = {"http://localhost:5173", "https://main--para-dish.netlify.app", "https://para-dish.netlify.app"})
 @RestController
 @RequestMapping("/user")
 public class UserController {
