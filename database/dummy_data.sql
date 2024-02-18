@@ -17,13 +17,14 @@ VALUES
 ( CURRENT_TIMESTAMP, 7.80, '2024-02-06 16:00:00', 'Address 5', '7', (SELECT id FROM "User" WHERE username = 'charlie_johnson'), 'Cash', 7.80);
 
 -- Insertions pour la table "Dish"
-INSERT INTO "Dish" ( name, description, price, image)
+INSERT INTO "Dish" (name, description, price, image)
 VALUES
-( 'Pasta Carbonara', 'Creamy pasta with bacon and parmesan', 12.99, 'https://drive.google.com/file/d/1OGRufInDko7TCWsSoh2NIaFRymZdjfw2/view?usp=drive_link'),
-( 'Chicken Alfredo', 'Creamy pasta with chicken and alfredo sauce', 15.50, 'https://drive.google.com/file/d/1ZYMer0wPAhwALrfOjiWJwJ720qA3fopM/view?usp=drive_link'),
-( 'Margherita Pizza', 'Classic pizza with tomato sauce and mozzarella cheese', 9.75, 'https://drive.google.com/file/d/1nUgJLMq4A0ozupo20AHCll374I-o5GfN/view?usp=drive_link'),
-( 'Asparagus and Beef Stir-Fry', 'Stir-fried beef with vegetables and soy sauce', 14.25, 'https://drive.google.com/file/d/1Uy89AB1lqvmZBkihqMTZ1KZJc1PgDtW7/view?usp=drive_link'),
-( 'Vegetarian Lasagna', 'Layered pasta with vegetables and cheese', 11.99, 'https://drive.google.com/file/d/1s9huyTaWXUQkbAIBVziRgRUYhT0dGo0C/view?usp=drive_link');
+('Pasta Carbonara', 'Pates cremeuses au bacon et parmesan', 12.99, '/images/Pasta carbonara.jpg'),
+('Chicken Alfredo', 'Pates cremeuses au poulet et sauce Alfredo', 15.50, '/images/Chicken Alfredo.jpg'),
+('Margherita Pizza', 'Pizza classique avec sauce tomate et fromage mozzarella', 9.75, '/images/Margherita Pizza.jpg'),
+('Asparagus and Beef Stir-Fry', 'Bœuf sauté aux legumes et sauce soja', 14.25, '/images/Asparagus and Beef Stir-Fry.jpg'),
+('Vegetarian Lasagna', 'Pates etagees aux legumes et au fromage', 11.99, '/images/Vegetarian Lasagna.jpg');
+
 
 -- Insertions pour la table "Ingredient"
 INSERT INTO "Ingredient" ( name)
@@ -34,20 +35,20 @@ VALUES
 ( 'Beef Strips'),
 ( 'Lasagna Noodles');
 
--- Insertions pour la table "included"
-INSERT INTO "included" ( id_Order, id_Dish)
-VALUES
-( (SELECT id FROM "Order" WHERE shipping_cost = 10.50), (SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara')),
-( (SELECT id FROM "Order" WHERE shipping_cost = 8.20), (SELECT id FROM "Dish" WHERE name = 'Chicken Alfredo')),
-( (SELECT id FROM "Order" WHERE shipping_cost = 15.75), (SELECT id FROM "Dish" WHERE name = 'Margherita Pizza')),
-( (SELECT id FROM "Order" WHERE shipping_cost = 12.00), (SELECT id FROM "Dish" WHERE name = 'Asparagus and Beef Stir-Fry')),
-( (SELECT id FROM "Order" WHERE shipping_cost = 7.80), (SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'));
+    -- Insertions pour la table "included"
+    INSERT INTO "included" ( id_Order, id_Dish)
+    VALUES
+    ( (SELECT id FROM "Order" WHERE shipping_cost = 10.50), (SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara')),
+    ( (SELECT id FROM "Order" WHERE shipping_cost = 8.20), (SELECT id FROM "Dish" WHERE name = 'Chicken Alfredo')),
+    ( (SELECT id FROM "Order" WHERE shipping_cost = 15.75), (SELECT id FROM "Dish" WHERE name = 'Margherita Pizza')),
+    ( (SELECT id FROM "Order" WHERE shipping_cost = 12.00), (SELECT id FROM "Dish" WHERE name = 'Asparagus and Beef Stir-Fry')),
+    ( (SELECT id FROM "Order" WHERE shipping_cost = 7.80), (SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'));
 
--- Insertions pour la table "contains"
-INSERT INTO "contains" ( id_Dish, id_Ingredient)
-VALUES
-( (SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara'), (SELECT id FROM "Ingredient" WHERE name = 'Spaghetti')),
-( (SELECT id FROM "Dish" WHERE name = 'Chicken Alfredo'), (SELECT id FROM "Ingredient" WHERE name = 'Chicken Breast')),
-( (SELECT id FROM "Dish" WHERE name = 'Margherita Pizza'), (SELECT id FROM "Ingredient" WHERE name = 'Tomato Sauce')),
-( (SELECT id FROM "Dish" WHERE name = 'Beef Stir-Fry'), (SELECT id FROM "Ingredient" WHERE name = 'Beef Strips')),
-( (SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'), (SELECT id FROM "Ingredient" WHERE name = 'Lasagna Noodles'));
+    -- Insertions pour la table "contains"
+    INSERT INTO "contains" ( id_Dish, id_Ingredient)
+    VALUES
+    ( (SELECT id FROM "Dish" WHERE name = 'Pasta Carbonara'), (SELECT id FROM "Ingredient" WHERE name = 'Spaghetti')),
+    ( (SELECT id FROM "Dish" WHERE name = 'Chicken Alfredo'), (SELECT id FROM "Ingredient" WHERE name = 'Chicken Breast')),
+    ( (SELECT id FROM "Dish" WHERE name = 'Margherita Pizza'), (SELECT id FROM "Ingredient" WHERE name = 'Tomato Sauce')),
+    ( (SELECT id FROM "Dish" WHERE name = 'Beef Stir-Fry'), (SELECT id FROM "Ingredient" WHERE name = 'Beef Strips')),
+    ( (SELECT id FROM "Dish" WHERE name = 'Vegetarian Lasagna'), (SELECT id FROM "Ingredient" WHERE name = 'Lasagna Noodles'));
